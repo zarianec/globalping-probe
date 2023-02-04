@@ -1,6 +1,7 @@
 module.exports = {
 	branches: [ 'master' ],
-	repositoryUrl: 'https://github.com/jsdelivr/globalping-probe.git',
+	debug: true,
+	repositoryUrl: 'https://github.com/zarianec/globalping-probe.git',
 	plugins: [
 		'@semantic-release/commit-analyzer',
 		'@semantic-release/release-notes-generator',

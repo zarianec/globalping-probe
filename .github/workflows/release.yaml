@@ -4,16 +4,11 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  test:
-    uses: ./.github/workflows/_tests.yaml
-
   release:
     name: Release new version
 
     runs-on: ubuntu-latest
     container: node:18.13-bullseye-slim
-
-    needs: test
 
     permissions:
       contents: write
@@ -29,6 +24,8 @@ jobs:
         run: apt update && apt install -y git
 
       - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
 
       - name: Build
         run: |
@@ -37,6 +34,11 @@ jobs:
 
       - name: Prune dev dependencies
         run: npm install --only=prod
+
+      - name: debug
+        run: |
+          git config --global --add safe.directory /__w/globalping-probe/globalping-probe
+          git status
 
       - name: Release
         id: semantic
