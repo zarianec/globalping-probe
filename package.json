@@ -8,7 +8,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jsdelivr/globalping-probe.git"
+    "url": "git+https://github.com/zarianec/globalping-probe.git"
   },
   "dependencies": {
     "crypto-random-string": "^5.0.0",

@@ -4,16 +4,11 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  test:
-    uses: ./.github/workflows/_tests.yaml
-
   release:
     name: Release new version
 
     runs-on: ubuntu-latest
     container: node:18.13-bullseye-slim
-
-    needs: test
 
     permissions:
       contents: write
@@ -37,6 +32,11 @@ jobs:
 
       - name: Prune dev dependencies
         run: npm install --only=prod
+
+      - name: debug
+        run: |
+          git config --global --add safe.directory ${GITHUB_WORKSPACE}
+          git status
 
       - name: Release
         id: semantic
